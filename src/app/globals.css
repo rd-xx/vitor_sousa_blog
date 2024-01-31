@@ -4,16 +4,37 @@
 
 @layer base {
   :root {
-    --background: hsl(240, 20%, 95.1%);
-    --foreground: hsl(0, 0%, 3.9%);
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(224 71.4% 4.1%);
 
-    --primary: hsl(270, 58.88%, 58.04%);
+    --primary: hsl(262.1 83.3% 57.8%);
+    --primary-foreground: hsl(210 20% 98%);
+
+    --secondary: hsl(220 14.3% 95.9%);
+    --secondary-foreground: hsl(220.9 39.3% 11%);
+
+    --muted: hsl(220 14.3% 95.9%);
+    --muted-foreground: hsl(220 8.9% 46.1%);
+
+    --content1: hsl(0, 0%, 98%);
+    --content1-foreground: hsl(0, 0%, 3.9%);
   }
 }
 
 .dark {
-  --background: hsl(240, 8.33%, 9.41%);
-  --foreground: hsl(0, 0%, 98%);
+  --background: hsl(224 71.4% 4.1%);
+  --foreground: hsl(210 20% 98%);
 
-  --primary: hsl(269.73, 55.78%, 60.98%);
+  --primary: hsl(263.4 70% 50.4%);
+  --primary-foreground: hsl(210 20% 98%);
+
+  --secondary: hsl(215 27.9% 16.9%);
+  --secondary-foreground: hsl(210 20% 98%);
+
+  --muted: hsl(215 27.9% 16.9%);
+  --muted-foreground: hsl(217.9 10.6% 64.9%);
+
+  --content1: hsl(240, 8.33%, 9.41%);
+  --content1-foreground: hsl(0, 0%, 98%);
 }
+

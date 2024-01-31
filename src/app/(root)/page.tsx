@@ -1,5 +1,3 @@
-const Page = () => (
-  <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
-)
+const Page = () => <div>azerty</div>
 
 export default Page
