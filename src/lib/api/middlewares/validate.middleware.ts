@@ -8,13 +8,14 @@ type ValidateMiddleware = { query?: ZodSchema; body?: ZodSchema }
 
 const validateMiddleware =
   (opts: ValidateMiddleware): ApiMiddleware =>
-  ({ req, input }) => {
+  async ({ req, input }) => {
     const { query: querySchema, body: bodySchema } = opts
     const query = req.nextUrl.searchParams
+    const body = await req.json()
 
     try {
       const sanitizedQuery = querySchema ? querySchema.parse(query) : {}
-      const sanitizedBody = bodySchema ? bodySchema.parse(req.body) : {}
+      const sanitizedBody = bodySchema ? bodySchema.parse(body) : {}
 
       // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-unused-vars
       input = assign(sanitizedQuery, sanitizedBody)
