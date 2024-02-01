@@ -1,7 +1,7 @@
 import { assign } from "radash"
 import { ZodError, ZodSchema } from "zod"
 
-import { HttpArgumentsError } from "@/lib/api/errors"
+import { HttpArgumentsError } from "@/lib/api/utils/errors"
 import { ApiMiddleware } from "@/lib/types"
 
 type ValidateMiddleware = { query?: ZodSchema; body?: ZodSchema }

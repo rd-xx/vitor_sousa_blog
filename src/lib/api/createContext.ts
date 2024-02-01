@@ -2,7 +2,7 @@ import knex from "knex"
 import { NextRequest } from "next/server"
 
 import BaseModel from "@/db/models/BaseModel"
-import config from "@/lib/api/config"
+import config from "@/lib/api/utils/config"
 
 const createContext = (req: NextRequest) => {
   const send = (result: unknown, meta: Record<string, unknown> = {}) =>
