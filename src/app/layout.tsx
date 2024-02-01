@@ -5,6 +5,8 @@ import { LayoutProps } from "@/types"
 
 import "./globals.css"
 
+import { SessionContextProvider } from "@/web/contexts/session-context"
+
 // eslint-disable-next-line new-cap
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,7 +18,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en" className="bg-background">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <SessionContextProvider>{children}</SessionContextProvider>
+      </body>
     </html>
   )
 }
