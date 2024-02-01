@@ -18,7 +18,7 @@ import {
 } from "react-hook-form"
 import { cnBase as cn } from "tailwind-variants"
 
-import { Label } from "@/components/generics/label"
+import { Label } from "@/web/components/generics/label"
 
 export const Form = FormProvider
 

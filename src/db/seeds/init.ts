@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker"
 import { Knex } from "knex"
 
-import { UserUtils } from "../../lib/utils/user.utils"
+import { UserUtils } from "../../utils/user.utils"
 
 export async function seed(knex: Knex): Promise<void> {
   // eslint-disable-next-line no-console

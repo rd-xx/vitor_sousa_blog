@@ -1,6 +1,6 @@
 import knexfile from "@@/knexfile"
 
-import env from "@/lib/env.mjs"
+import env from "@/env.mjs"
 
 const config = {
   db: knexfile,

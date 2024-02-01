@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { LayoutProps } from "@/lib/types"
+import { LayoutProps } from "@/types"
 
 const Layout = ({ children }: LayoutProps) => (
   <main className="flex flex-col h-dvh items-center justify-center gap-12">

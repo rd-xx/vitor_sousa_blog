@@ -1,8 +1,8 @@
-import validateMiddleware from "@/lib/api/middlewares/validate.middleware"
-import mw from "@/lib/api/mw"
-import { HttpDuplicateError } from "@/lib/api/utils/errors"
-import { SignUpSchema, signUpSchema } from "@/lib/schemas"
-import { UserUtils } from "@/lib/utils"
+import validateMiddleware from "@/api/middlewares/validate.middleware"
+import mw from "@/api/mw"
+import { HttpDuplicateError } from "@/api/utils/errors"
+import { SignUpSchema, signUpSchema } from "@/schemas"
+import { UserUtils } from "@/utils"
 
 export const POST = mw([
   validateMiddleware({ body: signUpSchema }),

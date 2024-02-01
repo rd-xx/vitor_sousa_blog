@@ -1,7 +1,7 @@
 import { ZodError, ZodSchema } from "zod"
 
-import { HttpArgumentsError } from "@/lib/api/utils/errors"
-import { ApiMiddleware } from "@/lib/types"
+import { HttpArgumentsError } from "@/api/utils/errors"
+import { ApiMiddleware } from "@/types"
 
 type ValidateMiddleware = { query?: ZodSchema; body?: ZodSchema }
 

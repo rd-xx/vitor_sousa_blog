@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 
-import { LayoutProps } from "@/lib/types"
+import { LayoutProps } from "@/types"
 
 import "./globals.css"
 

@@ -2,15 +2,15 @@ import { JsonWebTokenError } from "jsonwebtoken"
 import { NextRequest } from "next/server"
 import { NotFoundError } from "objection"
 
-import createContext from "@/lib/api/createContext"
-import { HTTP_ERRORS } from "@/lib/api/utils/constants"
+import { HTTP_ERRORS } from "@/api/utils/constants"
+import createContext from "@/api/utils/createContext"
 import {
   HttpForbiddenError,
   HttpNotFoundError,
   HttpPublicError,
   PublicError,
-} from "@/lib/api/utils/errors"
-import { ApiMiddleware } from "@/lib/types"
+} from "@/api/utils/errors"
+import { ApiMiddleware } from "@/types"
 
 const handleError = (err: unknown) => {
   const error = (() => {

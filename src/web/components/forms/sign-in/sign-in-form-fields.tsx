@@ -1,13 +1,13 @@
 import { Control } from "react-hook-form"
 
+import { SignInSchema } from "@/schemas"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/generics/form"
-import { Input } from "@/components/generics/input"
-import { SignInSchema } from "@/lib/schemas"
+} from "@/web/components/generics/form"
+import { Input } from "@/web/components/generics/input"
 
 type Props = {
   control: Control<SignInSchema>

@@ -2,8 +2,8 @@ import { pbkdf2, randomBytes } from "node:crypto"
 import { promisify } from "node:util"
 import jsonwebtoken from "jsonwebtoken"
 
+import config from "@/api/config"
 import UserModel from "@/db/models/UserModel"
-import config from "@/lib/api/config"
 
 const hashPassword = async (
   password: string,

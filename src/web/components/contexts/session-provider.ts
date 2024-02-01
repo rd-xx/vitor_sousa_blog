@@ -1,5 +1,5 @@
 import jsonwebtoken from "jsonwebtoken"
-import config from "@/lib/config"
+import config from "@/web/config"
 import {
   createContext,
   useCallback,

@@ -1,4 +1,4 @@
-import createContext from "@/lib/api/createContext"
+import createContext from "@/api/utils/createContext"
 
 export type ApiContext = ReturnType<typeof createContext>
 

@@ -2,14 +2,14 @@ import ms from "ms"
 import { cookies } from "next/headers"
 import { sleep } from "radash"
 
-import config from "@/lib/api/config"
-import validateMiddleware from "@/lib/api/middlewares/validate.middleware"
-import mw from "@/lib/api/mw"
-import { AVERAGE_PASSWORD_HASHING_DURATION } from "@/lib/api/utils/constants"
-import { HttpAuthenticationError } from "@/lib/api/utils/errors"
-import webConfig from "@/lib/config"
-import { SignInSchema, signInSchema } from "@/lib/schemas"
-import { UserUtils } from "@/lib/utils"
+import config from "@/api/config"
+import validateMiddleware from "@/api/middlewares/validate.middleware"
+import mw from "@/api/mw"
+import { AVERAGE_PASSWORD_HASHING_DURATION } from "@/api/utils/constants"
+import { HttpAuthenticationError } from "@/api/utils/errors"
+import { SignInSchema, signInSchema } from "@/schemas"
+import { UserUtils } from "@/utils"
+import webConfig from "@/web/config"
 
 export const POST = mw([
   validateMiddleware({ body: signInSchema }),
