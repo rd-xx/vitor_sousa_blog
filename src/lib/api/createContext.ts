@@ -5,14 +5,21 @@ import BaseModel from "@/db/models/BaseModel"
 import CommentModel from "@/db/models/CommentModel"
 import PostModel from "@/db/models/PostModel"
 import UserModel from "@/db/models/UserModel"
-import config from "@/lib/api/utils/config"
+import config from "@/lib/api/config"
 
 const createContext = (req: NextRequest) => {
-  const send = (result: unknown, meta: Record<string, unknown> = {}) =>
-    Response.json({
-      result: Array.isArray(result) ? result : [result],
-      meta,
-    })
+  const send = (
+    result: unknown,
+    meta: Record<string, unknown> = {},
+    init: Parameters<typeof Response.json>[1] = {},
+  ) =>
+    Response.json(
+      {
+        result: Array.isArray(result) ? result : [result],
+        meta,
+      },
+      init,
+    )
   const db = knex(config.db)
 
   BaseModel.knex(db)

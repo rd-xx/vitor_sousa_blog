@@ -1,5 +1,9 @@
 import { pbkdf2, randomBytes } from "node:crypto"
 import { promisify } from "node:util"
+import jsonwebtoken from "jsonwebtoken"
+
+import UserModel from "@/db/models/UserModel"
+import config from "@/lib/api/config"
 
 const hashPassword = async (
   password: string,
@@ -11,7 +15,30 @@ const hashPassword = async (
 
   return { hash, salt }
 }
+const signToken = (user: UserModel) => {
+  const jwt = jsonwebtoken.sign(
+    {
+      payload: {
+        user: {
+          id: user.id,
+          username: user.username,
+          role: user.role,
+        },
+      },
+    },
+    config.security.jwt.secret,
+    { expiresIn: config.security.jwt.expiresIn },
+  )
+  const cookieJwt = jsonwebtoken.sign(
+    { payload: jwt },
+    config.security.jwt.secret,
+    { expiresIn: config.security.jwt.expiresIn },
+  )
+
+  return { jwt, cookieJwt }
+}
 
 export const UserUtils = {
   hashPassword,
+  signToken,
 }
