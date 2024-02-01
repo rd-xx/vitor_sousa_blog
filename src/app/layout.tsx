@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 
+import Providers from "@/app/providers"
 import { LayoutProps } from "@/types"
 
 import "./globals.css"
-
-import { SessionContextProvider } from "@/web/contexts/session-context"
 
 // eslint-disable-next-line new-cap
 const inter = Inter({ subsets: ["latin"] })
@@ -19,7 +18,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en" className="bg-background">
       <body className={inter.className}>
-        <SessionContextProvider>{children}</SessionContextProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

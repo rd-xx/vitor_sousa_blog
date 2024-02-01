@@ -13,3 +13,5 @@ export const signUpSchema = z.object({
 
 export type SignInSchema = z.infer<typeof signInSchema>
 export type SignUpSchema = z.infer<typeof signUpSchema>
+
+export type SignInApiResponse = [{ jwt: string }]

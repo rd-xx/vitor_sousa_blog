@@ -1,3 +1,5 @@
+"use client"
+
 import jsonwebtoken from "jsonwebtoken"
 import {
   createContext,
@@ -8,7 +10,7 @@ import {
   useState,
 } from "react"
 
-import { JwtPayload } from "@/types"
+import { JwtPayload, RawJwt } from "@/types"
 import config from "@/web/config"
 
 type SessionContextType = {
@@ -28,9 +30,9 @@ export const SessionContextProvider = (props: Props) => {
   const signIn = useCallback((jwt: string) => {
     localStorage.setItem(config.security.session.cookie.key, jwt)
 
-    const jwtPayload = jsonwebtoken.decode(jwt) as JwtPayload
+    const { payload } = jsonwebtoken.decode(jwt) as RawJwt
 
-    setSession(jwtPayload)
+    setSession(payload)
   }, [])
 
   useEffect(() => {
@@ -41,7 +43,7 @@ export const SessionContextProvider = (props: Props) => {
     }
 
     // We should verify the JWT here, as the user can modify it in localStorage
-    const payload = jsonwebtoken.decode(jwt) as JwtPayload
+    const { payload } = jsonwebtoken.decode(jwt) as RawJwt
 
     setSession(payload)
   }, [])
