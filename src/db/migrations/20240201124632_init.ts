@@ -6,7 +6,7 @@ export const up = async (db: Knex) => {
     table.timestamps(true, true, true)
     table.timestamp("disabledUntil")
     table.text("email").notNullable().unique()
-    table.text("username").notNullable()
+    table.text("username").notNullable().unique()
     table.text("passwordHash").notNullable()
     table.text("passwordSalt").notNullable()
     table

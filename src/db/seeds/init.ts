@@ -14,7 +14,7 @@ export async function seed(knex: Knex): Promise<void> {
   const users = await Promise.all(
     [...new Array(50)].map(async () => {
       const rawPassword = process.env.SEEDS_RAW_PASSWORD!
-      const hashedPassword = await UserUtils.hashPassword(rawPassword)
+      const { hash, salt } = await UserUtils.hashPassword(rawPassword)
 
       return {
         id: faker.string.uuid(),
@@ -23,8 +23,8 @@ export async function seed(knex: Knex): Promise<void> {
         disabledUntil: faker.datatype.boolean(0.2) ? faker.date.future() : null,
         email: faker.internet.email().toLowerCase(),
         username: faker.internet.userName(),
-        passwordHash: hashedPassword.hash,
-        passwordSalt: hashedPassword.salt,
+        passwordHash: hash,
+        passwordSalt: salt,
         role: faker.datatype.boolean(0.4) ? "AUTHOR" : "USER",
       }
     }),

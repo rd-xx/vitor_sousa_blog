@@ -1,4 +1,3 @@
-import { assign } from "radash"
 import { ZodError, ZodSchema } from "zod"
 
 import { HttpArgumentsError } from "@/lib/api/utils/errors"
@@ -17,8 +16,7 @@ const validateMiddleware =
       const sanitizedQuery = querySchema ? querySchema.parse(query) : {}
       const sanitizedBody = bodySchema ? bodySchema.parse(body) : {}
 
-      // eslint-disable-next-line no-param-reassign, @typescript-eslint/no-unused-vars
-      input = assign(sanitizedQuery, sanitizedBody)
+      Object.assign(input, sanitizedQuery, sanitizedBody)
     } catch (err) {
       if (err instanceof ZodError) {
         const errors = Object.entries(err.flatten().fieldErrors).map(

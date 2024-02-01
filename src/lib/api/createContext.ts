@@ -2,6 +2,9 @@ import knex from "knex"
 import { NextRequest } from "next/server"
 
 import BaseModel from "@/db/models/BaseModel"
+import CommentModel from "@/db/models/CommentModel"
+import PostModel from "@/db/models/PostModel"
+import UserModel from "@/db/models/UserModel"
 import config from "@/lib/api/utils/config"
 
 const createContext = (req: NextRequest) => {
@@ -19,7 +22,11 @@ const createContext = (req: NextRequest) => {
     send,
     input: {},
     db,
-    models: {},
+    models: {
+      UserModel,
+      PostModel,
+      CommentModel,
+    },
   }
 }
 
