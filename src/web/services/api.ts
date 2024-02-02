@@ -15,7 +15,7 @@ const apiClient = <T, R, M = []>(
 
   return axios<T, AxiosResponse<ApiResponse<R, M>>>(
     `/api/${url}`,
-    assign(options, { method, headers }),
+    assign(options, { method, headers, withCredentials: true }),
   )
 }
 
@@ -27,5 +27,6 @@ export const api = {
       }),
     signUp: (data: SignUpSchema) =>
       apiClient<typeof data, boolean>("POST", "users/sign-up", { data }),
+    signOut: () => apiClient<void, boolean>("DELETE", "users/sessions", {}),
   },
 }

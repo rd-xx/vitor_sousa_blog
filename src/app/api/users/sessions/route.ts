@@ -3,6 +3,7 @@ import { cookies } from "next/headers"
 import { sleep } from "radash"
 
 import config from "@/api/config"
+import authMiddleware from "@/api/middlewares/auth.middleware"
 import validateMiddleware from "@/api/middlewares/validate.middleware"
 import mw from "@/api/mw"
 import { AVERAGE_PASSWORD_HASHING_DURATION } from "@/api/utils/constants"
@@ -46,5 +47,20 @@ export const POST = mw([
     })
 
     return send({ jwt })
+  },
+])
+
+export const DELETE = mw([
+  authMiddleware,
+  ({ send }) => {
+    cookies().set(webConfig.security.session.cookie.key, "null", {
+      path: "/",
+      sameSite: "strict",
+      httpOnly: true,
+      secure: webConfig.security.session.cookie.secure,
+      expires: Date.now() - ms("10 years"),
+    })
+
+    return send(true)
   },
 ])

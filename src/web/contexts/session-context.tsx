@@ -16,6 +16,7 @@ import config from "@/web/config"
 type SessionContextType = {
   session: JwtPayload | null
   signIn: (jwt: string) => void
+  signOut: () => void
 }
 
 type Props = {
@@ -34,6 +35,10 @@ export const SessionContextProvider = (props: Props) => {
 
     setSession(payload)
   }, [])
+  const signOut = useCallback(() => {
+    localStorage.removeItem(config.security.session.cookie.key)
+    setSession(null)
+  }, [])
 
   useEffect(() => {
     const jwt = localStorage.getItem(config.security.session.cookie.key)
@@ -48,5 +53,7 @@ export const SessionContextProvider = (props: Props) => {
     setSession(payload)
   }, [])
 
-  return <SessionContext.Provider {...props} value={{ session, signIn }} />
+  return (
+    <SessionContext.Provider {...props} value={{ session, signIn, signOut }} />
+  )
 }

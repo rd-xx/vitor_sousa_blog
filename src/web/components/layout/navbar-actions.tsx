@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 
+import SignOutButton from "@/web/components/buttons/sign-out-button"
 import { Button } from "@/web/components/generics/button"
 import { useSession } from "@/web/contexts/session-context"
 
@@ -23,9 +24,7 @@ const NavbarActions = () => {
 
   return (
     <div className="flex items-center">
-      <Button className="px-0" variant="link" asChild>
-        Sign out
-      </Button>
+      <SignOutButton />
     </div>
   )
 }
