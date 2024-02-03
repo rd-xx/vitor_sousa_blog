@@ -9,14 +9,18 @@ const validateMiddleware =
   (opts: ValidateMiddleware): ApiMiddleware =>
   async ({ req, input }) => {
     const { query: querySchema, body: bodySchema } = opts
-    const query = req.nextUrl.searchParams
-    const body = await req.json()
 
     try {
+      const query = req.nextUrl.searchParams
       const sanitizedQuery = querySchema ? querySchema.parse(query) : {}
-      const sanitizedBody = bodySchema ? bodySchema.parse(body) : {}
+      Object.assign(input, sanitizedQuery)
 
-      Object.assign(input, sanitizedQuery, sanitizedBody)
+      if (["POST", "PUT"].includes(req.method)) {
+        const body = await req.json()
+        const sanitizedBody = bodySchema ? bodySchema.parse(body) : {}
+
+        Object.assign(input, sanitizedBody)
+      }
     } catch (err) {
       if (err instanceof ZodError) {
         const errors = Object.entries(err.flatten().fieldErrors).map(

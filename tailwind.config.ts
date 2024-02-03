@@ -7,6 +7,9 @@ const config: Config = {
   ],
   darkMode: "class",
   theme: {
+    transitionDuration: {
+      DEFAULT: "300ms",
+    },
     extend: {
       colors: {
         background: "var(--background)",
@@ -22,6 +25,10 @@ const config: Config = {
         muted: {
           DEFAULT: "var(--muted)",
           foreground: "var(--muted-foreground)",
+        },
+        accent: {
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
         },
         content1: {
           DEFAULT: "var(--content1)",

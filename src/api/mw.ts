@@ -46,8 +46,6 @@ const handleError = (err: unknown) => {
   )
 }
 const mw = (middlewares: ApiMiddleware[]) => async (req: NextRequest) => {
-  // Const requestId = randomUUID()
-
   const ctx = createContext(req)
 
   try {

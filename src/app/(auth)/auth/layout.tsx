@@ -5,7 +5,7 @@ import { LayoutProps } from "@/types"
 const Layout = ({ children }: LayoutProps) => (
   <main className="flex flex-col h-dvh items-center justify-center gap-12">
     <Link
-      className="text-4xl font-bold hover:scale-105 transition-all duration-300"
+      className="text-4xl font-bold hover:scale-105 transition-transform"
       href="/"
     >
       Kool

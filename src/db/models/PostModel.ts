@@ -24,6 +24,8 @@ export default class PostModel extends BaseModel {
       author: {
         relation: Model.BelongsToOneRelation,
         modelClass: UserModel,
+        filter: (query: PostModel["QueryBuilderType"]) =>
+          query.select("id", "username", "role"),
         join: {
           from: "posts.authorId",
           to: "users.id",

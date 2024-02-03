@@ -1,13 +1,16 @@
-"use client"
+import PostCard from "@/web/components/posts/post-card"
+import { api } from "@/web/services/api"
 
-import { useSession } from "@/web/contexts/session-context"
+const Page = async () => {
+  const { data } = await api.posts.get({ page: 1, perPage: 30 })
 
-const Page = () => {
-  const { session } = useSession()
-
-  console.log(session)
-
-  return <div>azerty</div>
+  return (
+    <div className="flex flex-wrap justify-center gap-6">
+      {data.result.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
+    </div>
+  )
 }
 
 export default Page
