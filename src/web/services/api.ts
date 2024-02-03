@@ -46,6 +46,7 @@ export const api = {
   posts: {
     get: (data: { page: number; perPage: number }) =>
       apiClient<typeof data, Post[]>("GET", "posts", { params: data }),
+    getById: (id: string) => apiClient<void, [Post]>("GET", `posts/${id}`, {}),
     create: (data: CreatePostSchema) =>
       apiClient<typeof data, [Post]>("POST", "posts", { data }),
   },

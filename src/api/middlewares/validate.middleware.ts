@@ -3,17 +3,22 @@ import { ZodError, ZodSchema } from "zod"
 import { HttpArgumentsError } from "@/api/utils/errors"
 import { ApiMiddleware } from "@/types"
 
-type ValidateMiddleware = { query?: ZodSchema; body?: ZodSchema }
+type ValidateMiddleware = {
+  params?: ZodSchema
+  query?: ZodSchema
+  body?: ZodSchema
+}
 
 const validateMiddleware =
   (opts: ValidateMiddleware): ApiMiddleware =>
-  async ({ req, input }) => {
-    const { query: querySchema, body: bodySchema } = opts
+  async ({ req, params, input }) => {
+    const { params: paramsSchema, query: querySchema, body: bodySchema } = opts
 
     try {
       const query = req.nextUrl.searchParams
       const sanitizedQuery = querySchema ? querySchema.parse(query) : {}
-      Object.assign(input, sanitizedQuery)
+      const sanitizedParams = paramsSchema ? paramsSchema.parse(params) : {}
+      Object.assign(input, sanitizedQuery, sanitizedParams)
 
       if (["POST", "PUT"].includes(req.method)) {
         const body = await req.json()

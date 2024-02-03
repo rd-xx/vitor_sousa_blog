@@ -8,7 +8,10 @@ import PostModel from "@/db/models/PostModel"
 import UserModel from "@/db/models/UserModel"
 import { JwtPayload } from "@/types"
 
-const createContext = (req: NextRequest) => {
+const createContext = (
+  req: NextRequest,
+  opts: { params: Record<string, string> },
+) => {
   const send = (
     result: unknown,
     meta: Record<string, unknown> = {},
@@ -29,6 +32,7 @@ const createContext = (req: NextRequest) => {
     req,
     send,
     input: {},
+    params: opts.params,
     session: {} as JwtPayload | {},
     db,
     models: {

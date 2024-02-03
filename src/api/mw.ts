@@ -45,23 +45,25 @@ const handleError = (err: unknown) => {
     },
   )
 }
-const mw = (middlewares: ApiMiddleware[]) => async (req: NextRequest) => {
-  const ctx = createContext(req)
+const mw =
+  (middlewares: ApiMiddleware[]) =>
+  async (req: NextRequest, opts: { params: Record<string, string> }) => {
+    const ctx = createContext(req, opts)
 
-  try {
-    for (const middleware of middlewares) {
-      // eslint-disable-next-line no-await-in-loop
-      const res = await middleware(ctx)
+    try {
+      for (const middleware of middlewares) {
+        // eslint-disable-next-line no-await-in-loop
+        const res = await middleware(ctx)
 
-      if (res) {
-        return res
+        if (res) {
+          return res
+        }
       }
-    }
 
-    throw new Error("No response")
-  } catch (err) {
-    return handleError(err)
+      throw new Error("No response")
+    } catch (err) {
+      return handleError(err)
+    }
   }
-}
 
 export default mw
