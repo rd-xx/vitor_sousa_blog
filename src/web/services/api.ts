@@ -1,8 +1,13 @@
 import axios, { AxiosRequestConfig, AxiosResponse, Method } from "axios"
 import { assign } from "radash"
 
-import getSession from "@/api/utils/getSession"
-import { SignInApiResponse, SignInSchema, SignUpSchema } from "@/schemas"
+import getSessionCookie from "@/api/utils/getSessionCookie"
+import {
+  CreatePostSchema,
+  SignInApiResponse,
+  SignInSchema,
+  SignUpSchema,
+} from "@/schemas"
 import { ApiResponse, Post } from "@/types"
 import config from "@/web/config"
 
@@ -14,7 +19,7 @@ const apiClient = <T, R, M = []>(
   const jwt =
     typeof window !== "undefined"
       ? localStorage.getItem(config.security.session.cookie.key)
-      : getSession()
+      : getSessionCookie()
   const headers = { Authorization: jwt }
 
   /**
@@ -41,5 +46,7 @@ export const api = {
   posts: {
     get: (data: { page: number; perPage: number }) =>
       apiClient<typeof data, Post[]>("GET", "posts", { params: data }),
+    create: (data: CreatePostSchema) =>
+      apiClient<typeof data, [Post]>("POST", "posts", { data }),
   },
 }

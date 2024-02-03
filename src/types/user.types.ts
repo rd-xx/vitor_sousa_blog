@@ -1,4 +1,8 @@
-export type Role = "USER" | "AUTHOR" | "ADMIN"
+import { z } from "zod"
+
+import { roles } from "@/schemas"
+
+export type Role = z.infer<typeof roles>
 
 export type MinimalUser = {
   id: string

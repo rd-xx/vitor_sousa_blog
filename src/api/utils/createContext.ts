@@ -6,6 +6,7 @@ import BaseModel from "@/db/models/BaseModel"
 import CommentModel from "@/db/models/CommentModel"
 import PostModel from "@/db/models/PostModel"
 import UserModel from "@/db/models/UserModel"
+import { JwtPayload } from "@/types"
 
 const createContext = (req: NextRequest) => {
   const send = (
@@ -28,6 +29,7 @@ const createContext = (req: NextRequest) => {
     req,
     send,
     input: {},
+    session: {} as JwtPayload | {},
     db,
     models: {
       UserModel,

@@ -6,6 +6,12 @@ export type ApiMiddleware =
   | ((ctx: ApiContext) => Promise<unknown>)
   | ((ctx: ApiContext) => unknown)
 
+export type CookieJwt = {
+  iat: number
+  exp: number
+  payload: string
+}
+
 export type RawJwt = {
   iat: number
   exp: number

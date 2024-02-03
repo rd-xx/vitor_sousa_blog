@@ -1,17 +1,23 @@
 "use server"
 
-import { cookies } from "next/headers"
+import jsonwebtoken from "jsonwebtoken"
 
-import config from "@/web/config"
+import getSessionCookie from "@/api/utils/getSessionCookie"
+import { CookieJwt, RawJwt } from "@/types"
 
 const getSession = () => {
-  const jwt = cookies().get(config.security.session.cookie.key)
+  const sessionCookie = getSessionCookie()
 
-  if (!jwt) {
+  if (!sessionCookie) {
     return null
   }
 
-  return jwt.value
+  const { payload: cookieJwtPayload } = jsonwebtoken.decode(
+    sessionCookie,
+  ) as CookieJwt
+  const { payload } = jsonwebtoken.decode(cookieJwtPayload) as RawJwt
+
+  return payload
 }
 
 export default getSession

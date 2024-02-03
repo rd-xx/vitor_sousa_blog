@@ -6,10 +6,10 @@ import config from "@/api/config"
 import authMiddleware from "@/api/middlewares/auth.middleware"
 import validateMiddleware from "@/api/middlewares/validate.middleware"
 import mw from "@/api/mw"
+import { UserService } from "@/api/services"
 import { AVERAGE_PASSWORD_HASHING_DURATION } from "@/api/utils/constants"
 import { HttpAuthenticationError } from "@/api/utils/errors"
 import { SignInSchema, signInSchema } from "@/schemas"
-import { UserUtils } from "@/utils"
 import webConfig from "@/web/config"
 
 export const POST = mw([
@@ -27,7 +27,7 @@ export const POST = mw([
       throw new HttpAuthenticationError()
     }
 
-    const { hash } = await UserUtils.hashPassword(
+    const { hash } = await UserService.hashPassword(
       input.password,
       user.passwordSalt,
     )
@@ -36,7 +36,7 @@ export const POST = mw([
       throw new HttpAuthenticationError()
     }
 
-    const { jwt, cookieJwt } = UserUtils.signToken(user)
+    const { jwt, cookieJwt } = UserService.signToken(user)
 
     cookies().set(webConfig.security.session.cookie.key, cookieJwt, {
       path: "/",
@@ -51,7 +51,7 @@ export const POST = mw([
 ])
 
 export const DELETE = mw([
-  authMiddleware,
+  authMiddleware(),
   ({ send }) => {
     cookies().set(webConfig.security.session.cookie.key, "null", {
       path: "/",

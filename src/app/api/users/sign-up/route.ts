@@ -1,8 +1,8 @@
 import validateMiddleware from "@/api/middlewares/validate.middleware"
 import mw from "@/api/mw"
+import { UserService } from "@/api/services"
 import { HttpDuplicateError } from "@/api/utils/errors"
 import { SignUpSchema, signUpSchema } from "@/schemas"
-import { UserUtils } from "@/utils"
 
 export const POST = mw([
   validateMiddleware({ body: signUpSchema }),
@@ -24,7 +24,7 @@ export const POST = mw([
       throw new HttpDuplicateError("user", user.username, "username")
     }
 
-    const { hash, salt } = await UserUtils.hashPassword(input.password)
+    const { hash, salt } = await UserService.hashPassword(input.password)
 
     await UserModel.query().insert({
       email: input.email,

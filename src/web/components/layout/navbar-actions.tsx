@@ -1,13 +1,12 @@
-"use client"
-
 import Link from "next/link"
 
+import getSession from "@/api/utils/getSession"
 import SignOutButton from "@/web/components/buttons/sign-out-button"
 import { Button } from "@/web/components/generics/button"
-import { useSession } from "@/web/contexts/session-context"
+import Role from "@/web/components/utils/role/server"
 
 const NavbarActions = () => {
-  const { session } = useSession()
+  const session = getSession()
 
   if (!session) {
     return (
@@ -23,7 +22,12 @@ const NavbarActions = () => {
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center gap-6">
+      <Role minimum="AUTHOR">
+        <Button className="px-0" variant="link" asChild>
+          <Link href="/posts/new">New post</Link>
+        </Button>
+      </Role>
       <SignOutButton />
     </div>
   )
