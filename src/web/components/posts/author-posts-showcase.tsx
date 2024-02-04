@@ -21,7 +21,7 @@ const AuthorPostsShowcase = async ({ userId }: Props) => {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">Posts</h1>
+      <h1 className="text-3xl font-bold">Posts ({posts.length})</h1>
       {posts.map((post) => (
         <Card key={post.id} className="flex justify-between space-y-0">
           <CardHeader>
@@ -29,6 +29,7 @@ const AuthorPostsShowcase = async ({ userId }: Props) => {
               <CardTitle className="text-xl w-fit">{post.title}</CardTitle>
             </Link>
             <CardDescription>ID : {post.id}</CardDescription>
+            <CardDescription>Vues : {post.views}</CardDescription>
           </CardHeader>
           <CardContent>
             <UpdatePostDialog post={post} />

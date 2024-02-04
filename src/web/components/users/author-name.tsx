@@ -4,7 +4,7 @@ import { tv } from "tailwind-variants"
 import { MinimalUser } from "@/types"
 
 const authorName = tv({
-  base: "text-primary font-medium px-2 py-1 -ml-2 rounded-lg hover:bg-neutral-200 transition-colors",
+  base: "text-primary font-medium px-2 py-1 -ml-2 rounded-lg hover:bg-neutral-200 transition-colors z-10",
 })
 
 type Props = {
@@ -13,10 +13,7 @@ type Props = {
 }
 
 const AuthorName = ({ author, className }: Props) => (
-  <Link
-    href={`/users/${author.username}`}
-    className={authorName({ className })}
-  >
+  <Link href={`/users/${author.id}`} className={authorName({ className })}>
     {author.username}
   </Link>
 )

@@ -47,7 +47,10 @@ const handleError = (err: unknown) => {
 }
 const mw =
   (middlewares: ApiMiddleware[]) =>
-  async (req: NextRequest, opts: { params: Record<string, string> }) => {
+  async (
+    req: NextRequest,
+    opts: { params: Record<string, string> },
+  ): Promise<void | Response> => {
     const ctx = createContext(req, opts)
 
     try {
@@ -56,7 +59,7 @@ const mw =
         const res = await middleware(ctx)
 
         if (res) {
-          return res
+          return res as Promise<void | Response>
         }
       }
 

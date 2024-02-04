@@ -1,4 +1,5 @@
 import { pick } from "radash"
+import { z } from "zod"
 
 import authMiddleware from "@/api/middlewares/auth.middleware"
 import validateMiddleware from "@/api/middlewares/validate.middleware"
@@ -6,6 +7,22 @@ import mw from "@/api/mw"
 import { HttpForbiddenError, HttpNotFoundError } from "@/api/utils/errors"
 import { UpdateUserSchema, updateUserSchema } from "@/schemas"
 import { DateUtils } from "@/utils"
+
+export const GET = mw([
+  validateMiddleware({ params: z.object({ userId: z.string().uuid() }) }),
+  async ({ send, params, models: { UserModel } }) => {
+    const user = await UserModel.query()
+      .findById(params.userId)
+      .withGraphFetched("posts")
+      .select("id", "username", "email", "role")
+
+    if (!user) {
+      throw new HttpNotFoundError()
+    }
+
+    return send(user)
+  },
+])
 
 export const PATCH = mw([
   authMiddleware(),

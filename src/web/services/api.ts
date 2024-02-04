@@ -15,7 +15,7 @@ import {
 import { ApiResponse, Comment, Post, User } from "@/types"
 import config from "@/web/config"
 
-const apiClient = <T, R, M = []>(
+const apiClient = <T, R, M = Record<string, never>>(
   method: Method,
   url: string,
   options: AxiosRequestConfig<T> = {},
@@ -59,7 +59,13 @@ export const api = {
       apiClient<typeof data, boolean>("POST", "users/sign-up", { data }),
     signOut: () => apiClient<void, boolean>("DELETE", "users/sessions"),
     getAll: () => apiClient<void, User[]>("GET", "users"),
-    getMe: () => apiClient<void, User>("GET", "users/me"),
+    get: (userId: string) =>
+      apiClient<void, User & { posts: Omit<Post, "author">[] }>(
+        "GET",
+        `users/${userId}`,
+      ),
+    getMe: () =>
+      apiClient<void, User, { commentsCount: number }>("GET", "users/me"),
     update: (userId: string) => (data: UpdateUserSchema) =>
       apiClient<typeof data, boolean>("PATCH", `users/${userId}`, { data }),
     delete: (userId: string) => () =>
