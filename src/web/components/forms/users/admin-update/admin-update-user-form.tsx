@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 
 import { UpdateUserSchema, updateUserSchema } from "@/schemas"
 import { User } from "@/types"
-import UpdateUserFormFields from "@/web/components/forms/users/update/update-user-form-fields"
+import AdminUpdateUserFormFields from "@/web/components/forms/users/admin-update/admin-update-user-form-fields"
 import { Form } from "@/web/components/generics/form"
 import { api } from "@/web/services/api"
 
@@ -15,7 +15,7 @@ type Props = {
   user: User
 }
 
-const UpdateUserForm = ({ user }: Props) => {
+const AdminUpdateUserForm = ({ user }: Props) => {
   const { mutate } = useMutation({
     mutationFn: api.users.update(user.id),
   })
@@ -34,10 +34,10 @@ const UpdateUserForm = ({ user }: Props) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-6"
       >
-        <UpdateUserFormFields control={form.control} />
+        <AdminUpdateUserFormFields control={form.control} />
       </form>
     </Form>
   )
 }
 
-export default UpdateUserForm
+export default AdminUpdateUserForm

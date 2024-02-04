@@ -4,22 +4,27 @@ import mw from "@/api/mw"
 import {
   CreatePostSchema,
   createPostSchema,
-  PaginationSchema,
-  paginationSchema,
+  GetPostsSchema,
+  getPostsSchema,
 } from "@/schemas/post.schemas"
 
 export const GET = mw([
-  validateMiddleware({ query: paginationSchema }),
+  validateMiddleware({ query: getPostsSchema }),
   async ({ send, input: untypedInput, models: { PostModel } }) => {
-    const input = untypedInput as PaginationSchema
+    const input = untypedInput as GetPostsSchema
     const query = PostModel.query()
+
+    if (input.authorId) {
+      query.where("authorId", input.authorId)
+    }
+
+    // Pagination is purposefully disabled is not yet implemented in the frontend
     const posts = await query
-      .clone()
       .withGraphFetched("author")
       .orderBy("updatedAt", "desc")
-      .page(input.page - 1, input.perPage)
+    // .page(input.page - 1, input.perPage)
 
-    return send(posts.results)
+    return send(posts)
   },
 ])
 

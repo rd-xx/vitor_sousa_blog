@@ -3,8 +3,9 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react"
-import { twc } from "react-twc"
 import { cnBase } from "tailwind-variants"
+
+import { twx } from "@/web/utils/twx"
 
 export const Dialog = DialogPrimitive.Root
 export const DialogTrigger = DialogPrimitive.Trigger
@@ -34,14 +35,14 @@ export const DialogContent = forwardRef<
 ))
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
-export const DialogOverlay = twc(
+export const DialogOverlay = twx(
   DialogPrimitive.Overlay,
 )`fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0`
-export const DialogHeader = twc.div`flex flex-col space-y-1.5 text-center sm:text-left`
-export const DialogFooter = twc.div`flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2`
-export const DialogTitle = twc(
+export const DialogHeader = twx.div`flex flex-col space-y-1.5 text-center sm:text-left`
+export const DialogFooter = twx.div`flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2`
+export const DialogTitle = twx(
   DialogPrimitive.Title,
 )`text-lg font-semibold leading-none tracking-tight`
-export const DialogDescription = twc(
+export const DialogDescription = twx(
   DialogPrimitive.Description,
 )`text-sm text-muted-foreground`

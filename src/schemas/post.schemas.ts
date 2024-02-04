@@ -1,8 +1,7 @@
 import { z } from "zod"
 
-export const paginationSchema = z.object({
-  page: z.coerce.number().default(1),
-  perPage: z.coerce.number().min(5).max(100).default(10),
+export const getPostsSchema = z.object({
+  authorId: z.coerce.string().uuid().optional(),
 })
 
 export const createPostSchema = z.object({
@@ -10,5 +9,8 @@ export const createPostSchema = z.object({
   content: z.string().min(3),
 })
 
-export type PaginationSchema = z.infer<typeof paginationSchema>
+export const updatePostSchema = createPostSchema
+
+export type GetPostsSchema = z.infer<typeof getPostsSchema>
 export type CreatePostSchema = z.infer<typeof createPostSchema>
+export type UpdatePostSchema = z.infer<typeof updatePostSchema>

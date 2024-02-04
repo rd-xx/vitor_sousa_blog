@@ -25,6 +25,9 @@ const NavbarActions = () => {
 
   return (
     <div className="flex items-center gap-6">
+      <Button className="px-0" variant="link" asChild>
+        <Link href="/profile">Profil</Link>
+      </Button>
       <Role minimum="AUTHOR">
         <Button className="px-0" variant="link" asChild>
           <Link href="/posts/new">Nouveau post</Link>

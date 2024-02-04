@@ -6,11 +6,11 @@ export type Role = z.infer<typeof roles>
 
 export type MinimalUser = {
   id: string
+  email: string
   username: string
   role: Role
 }
 
 export type User = MinimalUser & {
-  email: string
   disabled: boolean
 }

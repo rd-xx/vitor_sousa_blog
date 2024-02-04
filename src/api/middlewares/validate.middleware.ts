@@ -15,10 +15,11 @@ const validateMiddleware =
     const { params: paramsSchema, query: querySchema, body: bodySchema } = opts
 
     try {
-      const query = req.nextUrl.searchParams
+      const query = Object.fromEntries(req.nextUrl.searchParams.entries())
       const sanitizedQuery = querySchema ? querySchema.parse(query) : {}
-      const sanitizedParams = paramsSchema ? paramsSchema.parse(params) : {}
-      Object.assign(input, sanitizedQuery, sanitizedParams)
+      paramsSchema?.parse(params)
+
+      Object.assign(input, sanitizedQuery)
 
       if (["POST", "PUT", "PATCH"].includes(req.method)) {
         const body = await req.json()

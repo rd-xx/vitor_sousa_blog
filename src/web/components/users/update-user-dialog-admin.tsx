@@ -1,7 +1,7 @@
 import { Pencil } from "lucide-react"
 
 import { User } from "@/types"
-import UpdateUserForm from "@/web/components/forms/users/update/update-user-form"
+import AdminUpdateUserForm from "@/web/components/forms/users/admin-update/admin-update-user-form"
 import { Button } from "@/web/components/generics/button"
 import {
   Dialog,
@@ -17,7 +17,7 @@ type Props = {
   user: User
 }
 
-const UpdateUserDialog = ({ user }: Props) => (
+const UpdateUserDialogAdmin = ({ user }: Props) => (
   <Dialog>
     <DialogTrigger asChild>
       <Button size="icon">
@@ -32,7 +32,7 @@ const UpdateUserDialog = ({ user }: Props) => (
           terminé.
         </DialogDescription>
       </DialogHeader>
-      <UpdateUserForm user={user} />
+      <AdminUpdateUserForm user={user} />
       <DialogFooter>
         <Button type="submit" form="update-user">
           Sauvegarder
@@ -42,4 +42,4 @@ const UpdateUserDialog = ({ user }: Props) => (
   </Dialog>
 )
 
-export default UpdateUserDialog
+export default UpdateUserDialogAdmin

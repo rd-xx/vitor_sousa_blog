@@ -1,13 +1,8 @@
 import { Control } from "react-hook-form"
 
 import { SignInSchema } from "@/schemas"
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/web/components/generics/form"
-import { Input } from "@/web/components/generics/input"
+import EmailField from "@/web/components/forms/standalone-fields/email-field"
+import PasswordField from "@/web/components/forms/standalone-fields/password-field"
 
 type Props = {
   control: Control<SignInSchema>
@@ -15,30 +10,7 @@ type Props = {
 
 export const SignInFormFields = ({ control }: Props) => (
   <>
-    <FormField
-      control={control}
-      name="email"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>E-mail</FormLabel>
-          <FormControl>
-            <Input placeholder="test@gmail.com" {...field} />
-          </FormControl>
-        </FormItem>
-      )}
-    />
-
-    <FormField
-      control={control}
-      name="password"
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>Mot de passe</FormLabel>
-          <FormControl>
-            <Input type="password" {...field} />
-          </FormControl>
-        </FormItem>
-      )}
-    />
+    <EmailField control={control} />
+    <PasswordField control={control} />
   </>
 )

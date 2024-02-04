@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/web/components/generics/table"
 import DeleteUserDialog from "@/web/components/users/delete-user-dialog"
-import UpdateUserDialog from "@/web/components/users/update-user-dialog"
+import UpdateUserDialogAdmin from "@/web/components/users/update-user-dialog-admin"
 
 type Props = {
   users: User[]
@@ -35,7 +35,7 @@ const UsersTable = ({ users }: Props) => (
           <TableCell>{user.role}</TableCell>
           <TableCell>{user.disabled ? "Oui" : "Non"}</TableCell>
           <TableCell className="flex gap-2">
-            <UpdateUserDialog user={user} />
+            <UpdateUserDialogAdmin user={user} />
             <DeleteUserDialog user={user} />
           </TableCell>
         </TableRow>

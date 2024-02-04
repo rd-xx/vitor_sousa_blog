@@ -5,9 +5,11 @@ import { assign } from "radash"
 import getSessionCookie from "@/api/utils/getSessionCookie"
 import {
   CreatePostSchema,
+  GetPostsSchema,
   SignInApiResponse,
   SignInSchema,
   SignUpSchema,
+  UpdatePostSchema,
   UpdateUserSchema,
 } from "@/schemas"
 import { ApiResponse, Comment, Post, User } from "@/types"
@@ -57,17 +59,20 @@ export const api = {
       apiClient<typeof data, boolean>("POST", "users/sign-up", { data }),
     signOut: () => apiClient<void, boolean>("DELETE", "users/sessions"),
     getAll: () => apiClient<void, User[]>("GET", "users"),
+    getMe: () => apiClient<void, User>("GET", "users/me"),
     update: (userId: string) => (data: UpdateUserSchema) =>
       apiClient<typeof data, boolean>("PATCH", `users/${userId}`, { data }),
     delete: (userId: string) => () =>
       apiClient<void, boolean>("DELETE", `users/${userId}`),
   },
   posts: {
-    get: (data: { page: number; perPage: number }) =>
+    get: (data: GetPostsSchema) =>
       apiClient<typeof data, Post[]>("GET", "posts", { params: data }),
     getById: (id: string) => apiClient<void, Post>("GET", `posts/${id}`),
     create: (data: CreatePostSchema) =>
       apiClient<typeof data, Post>("POST", "posts", { data }),
+    update: (postId: string) => (data: UpdatePostSchema) =>
+      apiClient<typeof data, Post>("PATCH", `posts/${postId}`, { data }),
   },
   comments: {
     getByPostId: (id: string) =>

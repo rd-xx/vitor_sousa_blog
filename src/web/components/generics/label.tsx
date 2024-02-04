@@ -1,3 +1,3 @@
-import { twc } from "react-twc"
+import { twx } from "@/web/utils/twx"
 
-export const Label = twc.label`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`
+export const Label = twx.label`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70`

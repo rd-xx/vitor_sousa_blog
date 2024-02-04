@@ -1,4 +1,5 @@
 import createContext from "@/api/utils/createContext"
+import { MinimalUser } from "@/types"
 
 export type ApiContext = ReturnType<typeof createContext>
 
@@ -19,11 +20,7 @@ export type RawJwt = {
 }
 
 export type JwtPayload = {
-  user: {
-    id: string
-    username: string
-    role: "USER" | "AUTHOR" | "ADMIN"
-  }
+  user: MinimalUser
 }
 
 export type ApiResponse<T, M> = { result: T; meta: M }

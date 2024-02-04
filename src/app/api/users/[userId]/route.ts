@@ -1,22 +1,40 @@
+import { pick } from "radash"
+
 import authMiddleware from "@/api/middlewares/auth.middleware"
 import validateMiddleware from "@/api/middlewares/validate.middleware"
 import mw from "@/api/mw"
-import { HttpNotFoundError } from "@/api/utils/errors"
+import { HttpForbiddenError, HttpNotFoundError } from "@/api/utils/errors"
 import { UpdateUserSchema, updateUserSchema } from "@/schemas"
 import { DateUtils } from "@/utils"
 
 export const PATCH = mw([
-  authMiddleware("ADMIN"),
+  authMiddleware(),
   validateMiddleware({ body: updateUserSchema }),
-  async ({ send, params, input: untypedInput, models: { UserModel } }) => {
-    const { disabled, ...input } = untypedInput as UpdateUserSchema
+  async ({
+    send,
+    session,
+    params,
+    input: untypedInput,
+    models: { UserModel },
+  }) => {
+    if (!("user" in session)) {
+      throw new Error("User not found in session")
+    }
 
-    await UserModel.query()
-      .patch({
-        ...input,
-        disabledUntil: disabled ? DateUtils.addYears(new Date(), 10) : null,
-      })
-      .where("id", params.userId)
+    if (params.userId !== session.user.id && session.user.role !== "ADMIN") {
+      throw new HttpForbiddenError()
+    }
+
+    const { disabled, ...input } = untypedInput as UpdateUserSchema
+    const payload =
+      session.user.role === "ADMIN"
+        ? {
+            ...input,
+            disabledUntil: disabled ? DateUtils.addYears(new Date(), 10) : null,
+          }
+        : pick(input, ["email", "username"])
+
+    await UserModel.query().patch(payload).where("id", params.userId)
 
     return send(true)
   },

@@ -1,6 +1,6 @@
 import { Control } from "react-hook-form"
 
-import { CreatePostSchema } from "@/schemas"
+import { CreatePostSchema, UpdatePostSchema } from "@/schemas"
 import {
   FormControl,
   FormField,
@@ -11,7 +11,7 @@ import { Input } from "@/web/components/generics/input"
 import { Textarea } from "@/web/components/generics/textarea"
 
 type Props = {
-  control: Control<CreatePostSchema>
+  control: Control<CreatePostSchema | UpdatePostSchema>
 }
 
 const CreatePostFormFields = ({ control }: Props) => (

@@ -3,8 +3,9 @@
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react"
-import { twc } from "react-twc"
 import { cnBase as cn } from "tailwind-variants"
+
+import { twx } from "@/web/utils/twx"
 
 export const SelectTrigger = forwardRef<
   ElementRef<typeof SelectPrimitive.Trigger>,
@@ -119,9 +120,9 @@ SelectItem.displayName = SelectPrimitive.Item.displayName
 export const Select = SelectPrimitive.Root
 export const SelectGroup = SelectPrimitive.Group
 export const SelectValue = SelectPrimitive.Value
-export const SelectLabel = twc(
+export const SelectLabel = twx(
   SelectPrimitive.Label,
 )`py-1.5 pl-8 pr-2 text-sm font-semibold`
-export const SelectSeparator = twc(
+export const SelectSeparator = twx(
   SelectPrimitive.Separator,
 )`-mx-1 my-1 h-px bg-muted`
