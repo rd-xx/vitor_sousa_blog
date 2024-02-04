@@ -20,7 +20,7 @@ const validateMiddleware =
       const sanitizedParams = paramsSchema ? paramsSchema.parse(params) : {}
       Object.assign(input, sanitizedQuery, sanitizedParams)
 
-      if (["POST", "PUT"].includes(req.method)) {
+      if (["POST", "PUT", "PATCH"].includes(req.method)) {
         const body = await req.json()
         const sanitizedBody = bodySchema ? bodySchema.parse(body) : {}
 

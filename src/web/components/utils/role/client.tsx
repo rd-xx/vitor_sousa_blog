@@ -1,6 +1,6 @@
-import getSession from "@/api/utils/getSession"
 import { Role } from "@/types"
 import { UserUtils } from "@/utils"
+import { useSession } from "@/web/contexts/session-context"
 import { ReactNode } from "react"
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Role = ({minimum,children}: Props) => {
-  const session = getSession()  
+  const {session} = useSession()
 
   if (!session || !UserUtils.hasPermission(session, minimum)) {
     return null

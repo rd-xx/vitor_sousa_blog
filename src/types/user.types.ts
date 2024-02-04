@@ -9,3 +9,7 @@ export type MinimalUser = {
   username: string
   role: Role
 }
+
+export type User = MinimalUser & {
+  email: string
+}

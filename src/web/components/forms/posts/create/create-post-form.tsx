@@ -35,13 +35,14 @@ const CreatePostForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex flex-col gap-6">
-          <CreatePostFormFields control={form.control} />
-          <Button className="w-24 self-end" type="submit">
-            Créer
-          </Button>
-        </div>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-6"
+      >
+        <CreatePostFormFields control={form.control} />
+        <Button className="w-24 self-end" type="submit">
+          Créer
+        </Button>
       </form>
     </Form>
   )
