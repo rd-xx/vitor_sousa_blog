@@ -18,13 +18,11 @@ import {
   CardTitle,
 } from "@/web/components/generics/card"
 import { Form } from "@/web/components/generics/form"
-import { useSession } from "@/web/contexts/session-context"
 import { api } from "@/web/services/api"
 import handleHttpError from "@/web/utils/handleHttpError"
 
 const Page = () => {
   const router = useRouter()
-  const { signIn } = useSession()
   const { mutate, isPending } = useMutation({
     mutationFn: api.users.signUp,
     onSuccess: () => {
