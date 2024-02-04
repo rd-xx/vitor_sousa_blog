@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker"
 import { Knex } from "knex"
 
-import { UserUtils } from "../../utils/user.utils"
+import { UserService } from "../../api/services"
 
 export async function seed(knex: Knex): Promise<void> {
   // eslint-disable-next-line no-console
@@ -14,7 +14,7 @@ export async function seed(knex: Knex): Promise<void> {
   const users = await Promise.all(
     [...new Array(50)].map(async () => {
       const rawPassword = process.env.SEEDS_RAW_PASSWORD!
-      const { hash, salt } = await UserUtils.hashPassword(rawPassword)
+      const { hash, salt } = await UserService.hashPassword(rawPassword)
 
       return {
         id: faker.string.uuid(),
