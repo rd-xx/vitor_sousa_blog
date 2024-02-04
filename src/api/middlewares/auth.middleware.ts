@@ -32,7 +32,7 @@ const authMiddleware =
       throw new HttpForbiddenError()
     }
 
-    Object.assign(session as {}, jwt.payload)
+    Object.assign(session as Record<string, never>, jwt.payload)
   }
 
 export default authMiddleware

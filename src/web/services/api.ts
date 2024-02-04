@@ -8,7 +8,7 @@ import {
   SignInSchema,
   SignUpSchema,
 } from "@/schemas"
-import { ApiResponse, Post } from "@/types"
+import { ApiResponse, Comment, Post } from "@/types"
 import config from "@/web/config"
 
 const apiClient = <T, R, M = []>(
@@ -49,5 +49,15 @@ export const api = {
     getById: (id: string) => apiClient<void, [Post]>("GET", `posts/${id}`, {}),
     create: (data: CreatePostSchema) =>
       apiClient<typeof data, [Post]>("POST", "posts", { data }),
+  },
+  comments: {
+    getByPostId: (id: string) =>
+      apiClient<void, Comment[]>("GET", `posts/${id}/comments`, {}),
+    create: (data: { postId: string; content: string }) =>
+      apiClient<typeof data, [Comment]>(
+        "POST",
+        `posts/${data.postId}/comments`,
+        { data },
+      ),
   },
 }

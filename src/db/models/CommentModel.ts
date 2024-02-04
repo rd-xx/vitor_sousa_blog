@@ -20,6 +20,8 @@ export default class CommentModel extends BaseModel {
       author: {
         relation: BaseModel.BelongsToOneRelation,
         modelClass: UserModel,
+        filter: (query: PostModel["QueryBuilderType"]) =>
+          query.select("id", "username", "role"),
         join: {
           from: "comments.authorId",
           to: "users.id",

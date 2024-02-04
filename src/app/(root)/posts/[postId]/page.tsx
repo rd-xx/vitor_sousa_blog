@@ -18,7 +18,7 @@ const Page = async ({ params }: Props) => {
     <div className="space-y-8">
       <h1 className="text-3xl font-semibold">{post.title}</h1>
       <p>{post.content}</p>
-      <CommentsShowcase />
+      <CommentsShowcase postId={params.postId} />
     </div>
   )
 }

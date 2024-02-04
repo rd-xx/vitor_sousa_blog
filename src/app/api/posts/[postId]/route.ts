@@ -14,6 +14,10 @@ export const GET = mw([
       throw new HttpNotFoundError()
     }
 
+    post.views = (Number.parseInt(post.views, 10) + 1).toString()
+
+    await post.$query().patch({ views: post.views })
+
     return send(post)
   },
 ])

@@ -31,14 +31,10 @@ export const POST = mw([
       throw new Error("User not found in session")
     }
 
-    console.log("session", session)
-
     const input = untypedInput as CreatePostSchema
     const post = await PostModel.query()
       .insert({ ...input, tags: [], authorId: session.user.id })
       .returning("*")
-
-    console.log("post", post)
 
     return send(post)
   },

@@ -48,7 +48,7 @@ export const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={pagination().previous(className)}
+    className={pagination().previous({ className })}
     {...props}
   >
     <ChevronLeft className={pagination().icon()} />
@@ -64,7 +64,7 @@ export const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={pagination().next(className)}
+    className={pagination().next({ className })}
     {...props}
   >
     <span>Next</span>
@@ -77,7 +77,7 @@ export const PaginationEllipsis = ({
   className,
   ...props
 }: React.ComponentProps<"span">) => (
-  <span aria-hidden className={pagination().ellipsis(className)} {...props}>
+  <span aria-hidden className={pagination().ellipsis({ className })} {...props}>
     <MoreHorizontal className={pagination().icon()} />
     <span className="sr-only">More pages</span>
   </span>

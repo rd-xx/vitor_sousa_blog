@@ -63,6 +63,8 @@ const mw =
       throw new Error("No response")
     } catch (err) {
       return handleError(err)
+    } finally {
+      await ctx.db.destroy()
     }
   }
 

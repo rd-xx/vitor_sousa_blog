@@ -11,7 +11,8 @@ export default class PostModel extends BaseModel {
   title: string
   content: string
   tags: string[]
-  views: number
+  // See https://github.com/knex/knex/issues/387
+  views: string
   authorId: string
 
   author: UserModel
