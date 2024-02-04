@@ -33,7 +33,7 @@ const UpdateUserFormFields = ({ control }: Props) => (
       name="username"
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Nom d'utilisateur</FormLabel>
+          <FormLabel>{"Nom d'utilisateur"}</FormLabel>
           <FormControl>
             <Input {...field} />
           </FormControl>

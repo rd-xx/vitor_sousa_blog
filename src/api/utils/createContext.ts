@@ -33,7 +33,7 @@ const createContext = (
     send,
     input: {},
     params: opts.params,
-    session: {} as JwtPayload | {},
+    session: {} as JwtPayload | Record<string, never>,
     db,
     models: {
       UserModel,

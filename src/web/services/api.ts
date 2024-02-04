@@ -16,7 +16,7 @@ import config from "@/web/config"
 const apiClient = <T, R, M = []>(
   method: Method,
   url: string,
-  options: AxiosRequestConfig<T>,
+  options: AxiosRequestConfig<T> = {},
 ) => {
   const jwt =
     typeof window !== "undefined"
@@ -55,21 +55,23 @@ export const api = {
       }),
     signUp: (data: SignUpSchema) =>
       apiClient<typeof data, boolean>("POST", "users/sign-up", { data }),
-    signOut: () => apiClient<void, boolean>("DELETE", "users/sessions", {}),
-    getAll: () => apiClient<void, User[]>("GET", "users", {}),
+    signOut: () => apiClient<void, boolean>("DELETE", "users/sessions"),
+    getAll: () => apiClient<void, User[]>("GET", "users"),
     update: (userId: string) => (data: UpdateUserSchema) =>
       apiClient<typeof data, boolean>("PATCH", `users/${userId}`, { data }),
+    delete: (userId: string) => () =>
+      apiClient<void, boolean>("DELETE", `users/${userId}`),
   },
   posts: {
     get: (data: { page: number; perPage: number }) =>
       apiClient<typeof data, Post[]>("GET", "posts", { params: data }),
-    getById: (id: string) => apiClient<void, Post>("GET", `posts/${id}`, {}),
+    getById: (id: string) => apiClient<void, Post>("GET", `posts/${id}`),
     create: (data: CreatePostSchema) =>
       apiClient<typeof data, Post>("POST", "posts", { data }),
   },
   comments: {
     getByPostId: (id: string) =>
-      apiClient<void, Comment[]>("GET", `posts/${id}/comments`, {}),
+      apiClient<void, Comment[]>("GET", `posts/${id}/comments`),
     create: (data: { postId: string; content: string }) =>
       apiClient<typeof data, [Comment]>(
         "POST",

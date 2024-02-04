@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/web/components/generics/table"
+import DeleteUserDialog from "@/web/components/users/delete-user-dialog"
 import UpdateUserDialog from "@/web/components/users/update-user-dialog"
 
 type Props = {
@@ -31,8 +32,9 @@ const UsersTable = ({ users }: Props) => (
           <TableCell>{user.email}</TableCell>
           <TableCell>{user.username}</TableCell>
           <TableCell>{user.role}</TableCell>
-          <TableCell>
+          <TableCell className="flex gap-2">
             <UpdateUserDialog user={user} />
+            <DeleteUserDialog user={user} />
           </TableCell>
         </TableRow>
       ))}
