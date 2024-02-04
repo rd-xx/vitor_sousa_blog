@@ -7,7 +7,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { tv } from "tailwind-variants"
 
 import { CreateCommentSchema, createCommentSchema } from "@/schemas"
-import { CommentUtils } from "@/utils/comment.utils"
+import { CommentUtils } from "@/utils"
 import CreateCommentFormFields from "@/web/components/forms/comments/create/create-comment-form-fields"
 import { Button } from "@/web/components/generics/button"
 import { Form } from "@/web/components/generics/form"

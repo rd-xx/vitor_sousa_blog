@@ -38,6 +38,13 @@ const config: Config = {
           DEFAULT: "var(--content1)",
           foreground: "var(--content1-foreground)",
         },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
+        },
+        input: "var(--input)",
+        border: "var(--border)",
+        ring: "var(--ring)",
       },
     },
   },

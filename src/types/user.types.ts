@@ -12,4 +12,5 @@ export type MinimalUser = {
 
 export type User = MinimalUser & {
   email: string
+  disabled: boolean
 }

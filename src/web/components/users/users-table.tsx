@@ -22,6 +22,7 @@ const UsersTable = ({ users }: Props) => (
         <TableHead>E-mail</TableHead>
         <TableHead>{"Nom d'utilisateur"}</TableHead>
         <TableHead>Rôle</TableHead>
+        <TableHead>Désactivé</TableHead>
         <TableHead></TableHead>
       </TableRow>
     </TableHeader>
@@ -32,6 +33,7 @@ const UsersTable = ({ users }: Props) => (
           <TableCell>{user.email}</TableCell>
           <TableCell>{user.username}</TableCell>
           <TableCell>{user.role}</TableCell>
+          <TableCell>{user.disabled ? "Oui" : "Non"}</TableCell>
           <TableCell className="flex gap-2">
             <UpdateUserDialog user={user} />
             <DeleteUserDialog user={user} />

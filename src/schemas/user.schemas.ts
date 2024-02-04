@@ -7,6 +7,7 @@ export const updateUserSchema = z
   .object({
     email: z.string().email().toLowerCase(),
     username: z.string().min(3),
+    disabled: z.boolean(),
     role: roles,
   })
   .partial()

@@ -3,14 +3,20 @@ import validateMiddleware from "@/api/middlewares/validate.middleware"
 import mw from "@/api/mw"
 import { HttpNotFoundError } from "@/api/utils/errors"
 import { UpdateUserSchema, updateUserSchema } from "@/schemas"
+import { DateUtils } from "@/utils"
 
 export const PATCH = mw([
   authMiddleware("ADMIN"),
   validateMiddleware({ body: updateUserSchema }),
   async ({ send, params, input: untypedInput, models: { UserModel } }) => {
-    const input = untypedInput as UpdateUserSchema
+    const { disabled, ...input } = untypedInput as UpdateUserSchema
 
-    await UserModel.query().patch(input).where("id", params.userId)
+    await UserModel.query()
+      .patch({
+        ...input,
+        disabledUntil: disabled ? DateUtils.addYears(new Date(), 10) : null,
+      })
+      .where("id", params.userId)
 
     return send(true)
   },
