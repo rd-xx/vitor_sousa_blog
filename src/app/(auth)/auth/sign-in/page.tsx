@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation"
 import { SubmitHandler, useForm } from "react-hook-form"
 
 import { SignInSchema, signInSchema } from "@/schemas"
-import { SignInFormFields } from "@/web/components/forms/sign-in/sign-in-form-fields"
+import SignInFormFields from "@/web/components/forms/users/sign-in/sign-in-form-fields"
 import { Button } from "@/web/components/generics/button"
 import {
   Card,

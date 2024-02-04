@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/web/components/generics/form"
 import {
   Select,
@@ -32,6 +33,7 @@ const RoleField = <T extends FieldValues>({ control }: Props<T>) => (
               <SelectValue placeholder={field.value} />
             </SelectTrigger>
           </FormControl>
+          <FormMessage />
           <SelectContent>
             {rolesArray.map((role) => (
               <SelectItem key={role} value={role}>

@@ -5,6 +5,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/web/components/generics/form"
 import { Input } from "@/web/components/generics/input"
 
@@ -22,6 +23,7 @@ const PasswordField = <T extends FieldValues>({ control }: Props<T>) => (
         <FormControl>
           <Input type="password" {...field} />
         </FormControl>
+        <FormMessage />
       </FormItem>
     )}
   />

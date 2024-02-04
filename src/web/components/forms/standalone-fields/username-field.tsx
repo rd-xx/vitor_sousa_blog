@@ -5,6 +5,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/web/components/generics/form"
 import { Input } from "@/web/components/generics/input"
 
@@ -22,6 +23,7 @@ const UsernameField = <T extends FieldValues>({ control }: Props<T>) => (
         <FormControl>
           <Input {...field} />
         </FormControl>
+        <FormMessage />
       </FormItem>
     )}
   />

@@ -8,9 +8,11 @@ type Props = {
   control: Control<SignInSchema>
 }
 
-export const SignInFormFields = ({ control }: Props) => (
+const SignInFormFields = ({ control }: Props) => (
   <>
     <EmailField control={control} />
     <PasswordField control={control} />
   </>
 )
+
+export default SignInFormFields

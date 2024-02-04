@@ -5,6 +5,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/web/components/generics/form"
 import { Switch } from "@/web/components/generics/switch"
 
@@ -22,6 +23,7 @@ const DisabledField = <T extends FieldValues>({ control }: Props<T>) => (
         <FormControl>
           <Switch checked={field.value} onCheckedChange={field.onChange} />
         </FormControl>
+        <FormMessage />
       </FormItem>
     )}
   />

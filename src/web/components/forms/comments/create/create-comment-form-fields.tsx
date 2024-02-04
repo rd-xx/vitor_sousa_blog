@@ -5,6 +5,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormMessage,
 } from "@/web/components/generics/form"
 import { Textarea } from "@/web/components/generics/textarea"
 
@@ -22,6 +23,7 @@ const CreateCommentFormFields = ({ control }: Props) => (
           <FormControl>
             <Textarea className="w-full" {...field} />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />

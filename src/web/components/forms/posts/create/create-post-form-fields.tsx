@@ -6,6 +6,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/web/components/generics/form"
 import { Input } from "@/web/components/generics/input"
 import { Textarea } from "@/web/components/generics/textarea"
@@ -25,6 +26,7 @@ const CreatePostFormFields = ({ control }: Props) => (
           <FormControl>
             <Input {...field} />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
@@ -38,6 +40,7 @@ const CreatePostFormFields = ({ control }: Props) => (
           <FormControl>
             <Textarea {...field} />
           </FormControl>
+          <FormMessage />
         </FormItem>
       )}
     />
