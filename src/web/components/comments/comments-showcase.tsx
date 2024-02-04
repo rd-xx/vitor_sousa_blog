@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 import CommentCard from "@/web/components/comments/comment-card"
 import CommentsInstableWarning from "@/web/components/comments/comments-instable-warning"
 import CreateCommentForm from "@/web/components/forms/comments/create/create-comment-form"
+import { useSession } from "@/web/contexts/session-context"
 import { api } from "@/web/services/api"
 
 type Props = {
@@ -12,6 +13,7 @@ type Props = {
 }
 
 const CommentsShowcase = ({ postId }: Props) => {
+  const { session } = useSession()
   const { data, isLoading } = useQuery({
     queryKey: ["comments", postId],
     queryFn: () => api.comments.getByPostId(postId),
@@ -30,8 +32,8 @@ const CommentsShowcase = ({ postId }: Props) => {
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-xl font-medium">Comments</h3>
-      <CommentsInstableWarning />
-      <CreateCommentForm className="mb-8" postId={postId} />
+      {session && <CommentsInstableWarning />}
+      {session && <CreateCommentForm className="mb-8" postId={postId} />}
       <div className="space-y-6">
         {comments.map((c) => (
           <CommentCard key={c.id} comment={c} />

@@ -7,10 +7,7 @@ const Navbar = () => (
     <Link href="/" className="text-2xl font-medium">
       Kool
     </Link>
-    <div className="w-full flex justify-between items-center">
-      <nav className="">
-        <p>Posts</p>
-      </nav>
+    <div className="w-full flex justify-end items-center">
       <NavbarActions />
     </div>
   </header>
