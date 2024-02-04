@@ -26,9 +26,6 @@ const handleError = (err: unknown) => {
   })()
 
   if (!(error instanceof PublicError)) {
-    // eslint-disable-next-line no-console
-    console.log(error)
-
     return Response.json(
       { error: "Something went wrong." },
       { status: HTTP_ERRORS.INTERNAL_SERVER_ERROR },
